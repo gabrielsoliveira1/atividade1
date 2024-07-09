@@ -16,22 +16,35 @@ import javax.swing.JOptionPane;
  * @author Adm
  */
 public class conectaDAO {
-    
-    public Connection connectDB(){
+
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
+    public Connection connectDB() throws SQLException{
         Connection conn = null;
-        
+
+
+    public Connection connectDB() {
         try {
-        
+
             conn = DriverManager.getConnection("jdbc:mysql://localhost/uc11?user=root&password=");
-            
+
         } catch (SQLException erro){
             JOptionPane.showMessageDialog(null, "Erro ConectaDAO" + erro.getMessage());
+            Connection conn = DriverManager.getConnection(
+                    "jdbc:mysql://localhost/uc11", // linha de conexao
+                    "Admin", // usuario do mysql
+                    "Rps@32admin"// senha do mysql
+            );
+            return conn;
+
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "Erro ao conectar" + erro.getMessage());
+            return null;
         }
         return conn;
     }
 
-    Connection getConexao() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
 }
